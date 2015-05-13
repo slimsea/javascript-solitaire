@@ -144,6 +144,25 @@ function fillStacks(sourceDeck, destinationDeck) {
     }
   }
   
+  function canMoveAceCardToStack(slotIndex){
+    var aceSlot = aceSlots[slotIndex];
+    var stack = stacks[stack.length - 1];
+    var topCardOnSlot = aceSlot[aceSlot.length - 1];
+    if (aceSlot.length === 0){
+      if (ranks.indexOf(stack.rank) === 0){
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      if (isFamilySame(topCardOnSlot, stack) && isFirstCardMoreThanSecond(stack, topCardOnSlot)){
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
   function moveWasteCardToStack(stackIndex) {
     var canMove = canMoveWasteCardToStack(stackIndex);
     if (canMove){
